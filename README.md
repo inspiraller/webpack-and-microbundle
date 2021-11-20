@@ -6,7 +6,7 @@
 **ssh**
 ```
 git clone git@github.com:inspiraller/webpack-and-microbundle.git
-``` 
+```
 
 **https**
 ```
@@ -27,7 +27,7 @@ pnpm i
 npm run dev
 ```
 
-## Load into webbrowser to see working solution 
+## Load into webbrowser to see working solution
 - http://localhost:9001/
 
 ```
@@ -36,3 +36,24 @@ Session = some session value
 ```
 
 done !
+
+---
+
+# optional - loading in peer dependencies from the microbundle
+** webpack.config.js**
+```javascript
+resolve: {
+  alias: {
+    // vanillia example of loading in a barebones microbundle
+    '@mymicrobundle': path.resolve(__dirname, '../mymicrobundle/dist'),
+
+    // This is a peer dependency of the main app,
+    // Force 'react' and 'react-dom' to load from this repo
+    react: path.resolve('./node_modules/react'),
+    'react-dom': path.resolve('./node_modules/react-dom'),
+
+    // example missing module - fixes - Cannot find module 'p-queue/dist'
+    'p-queue/dist': path.resolve('../../dist')
+  },
+},
+```
