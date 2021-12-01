@@ -80,11 +80,35 @@ const config = {
     ],
   },
 
+  // resolve: {
+  //   extensions: ['*', '.js', '.jsx', '.tsx', '.scss', '.css'],
+  //   modules: ['node_modules'],
+  //   alias: {
+  //     '@mymicrobundle': path.resolve(__dirname, '../mymicrobundle/dist')
+  //   },
+  // },
+
+
   resolve: {
     extensions: ['*', '.js', '.jsx', '.tsx', '.scss', '.css'],
-    modules: ['node_modules'],
+    modules: ['node_modules', path.resolve(__dirname, '../mymicrobundle')],
     alias: {
-      '@mymicrobundle': path.resolve(__dirname, '../mymicrobundle/dist')
+      // This is a peer dependency of the main app,
+      // Force 'react' and 'react-dom' to load from this repo
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+
+      // shouldn't need to do these - because resolve.modules[path.resolve(__dirname, '../mymicrobundle')]
+      // is saying look in that folder for package.json information
+      // 'main'
+      // files: ['dist']
+      
+      // '@mymicrobundle': path.resolve(__dirname, '../mymicrobundle/dist/index.umd.js'),
+      // '@mymicrobundle/index.css': path.resolve(__dirname, '../mymicrobundle/dist/index.css')
+      // '@mymicrobundle/index.css': path.resolve(__dirname, '../mymicrobundle/dist/index.css')
+
+      // fixes - Cannot find module 'p-queue/dist'
+      // 'p-queue': path.resolve(`../microbundle/node_modules/p-queue`),
     },
   },
   output: {

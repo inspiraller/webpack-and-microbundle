@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
-import MyMicroBundle from '@mymicrobundle'
+// react and reactdom must com before @mymicrobundle
 
-import './index.scss'
+import MyMicroBundle from '@mymicrobundle'
+import '@mymicrobundle/dist/index.css'
 
 const App = () => {
   const [session, setSession] = useState('some session value')

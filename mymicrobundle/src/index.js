@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './index.scss'
 const MyMicroBundle = ({session}) => {
   return (
-    <div>Session = {session}</div>
+    <div id="microbundle">Session = {session}</div>
   )
 }
 
